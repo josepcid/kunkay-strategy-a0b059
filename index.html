@@ -1,0 +1,876 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8" />
+<title>Kunkay — Estrategia de lanzamiento línea champús</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Switcher strategy para el lanzamiento de la nueva línea de champús Kunkay en Meta Ads. 4 ad sets × 5 creativos, 700€ en testing.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:wght@400;500;600&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  *,*::before,*::after { box-sizing: border-box; margin: 0; padding: 0; }
+  :root {
+    --bg: #FAFAF7;
+    --bg-card: #FFFFFF;
+    --text: #1A1A1A;
+    --text-soft: #5C5C5C;
+    --text-mute: #8A8A85;
+    --gold: #E8D49A;
+    --gold-soft: #F4EAD0;
+    --gold-deep: #B89757;
+    --line: #E5E2D8;
+    --dark: #1A1A1A;
+  }
+  html { font-size: 17px; scroll-behavior: smooth; }
+  body {
+    font-family: 'Inter', system-ui, sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.65;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+  }
+  .container { max-width: 780px; margin: 0 auto; padding: 60px 32px 120px; }
+
+  /* HERO */
+  .hero { padding: 60px 0 50px; border-bottom: 1px solid var(--line); margin-bottom: 20px; }
+  .eyebrow {
+    font-size: 0.72rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--gold-deep);
+    font-weight: 500;
+    margin-bottom: 28px;
+  }
+  h1 {
+    font-family: 'Fraunces', serif;
+    font-weight: 500;
+    font-size: 3.3rem;
+    line-height: 1.05;
+    letter-spacing: -0.025em;
+    margin-bottom: 26px;
+  }
+  .lede {
+    font-size: 1.18rem;
+    color: var(--text-soft);
+    line-height: 1.55;
+    max-width: 640px;
+  }
+
+  /* SECTIONS */
+  section { padding: 50px 0; border-bottom: 1px solid var(--line); }
+  section:last-of-type { border-bottom: none; }
+  h2 {
+    font-family: 'Fraunces', serif;
+    font-weight: 500;
+    font-size: 2rem;
+    line-height: 1.15;
+    letter-spacing: -0.015em;
+    margin-bottom: 24px;
+    scroll-margin-top: 30px;
+  }
+  h2 .num {
+    font-size: 0.72rem;
+    font-family: 'Inter', sans-serif;
+    color: var(--gold-deep);
+    letter-spacing: 0.18em;
+    display: block;
+    margin-bottom: 14px;
+    font-weight: 500;
+    text-transform: uppercase;
+  }
+  h3 {
+    font-family: 'Fraunces', serif;
+    font-weight: 500;
+    font-size: 1.4rem;
+    line-height: 1.25;
+    margin: 36px 0 14px;
+  }
+  h4 {
+    font-family: 'Inter', sans-serif;
+    font-size: 0.78rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    margin: 28px 0 12px;
+    color: var(--text-mute);
+  }
+  p { margin-bottom: 1.1em; }
+  p strong { font-weight: 600; }
+  ul, ol { margin: 0.6em 0 1.3em 1.4em; }
+  li { margin-bottom: 0.45em; }
+
+  /* TOC */
+  nav.toc {
+    background: var(--bg-card);
+    border: 1px solid var(--line);
+    padding: 28px 32px;
+    margin: 40px 0 0;
+    border-radius: 4px;
+  }
+  nav.toc h4 { margin-top: 0; margin-bottom: 16px; color: var(--text); }
+  nav.toc ol { margin: 0 0 0 1.2em; counter-reset: toc; list-style: none; }
+  nav.toc li {
+    margin-bottom: 6px;
+    counter-increment: toc;
+    position: relative;
+    font-size: 0.95rem;
+  }
+  nav.toc li::before {
+    content: counter(toc, decimal-leading-zero);
+    position: absolute;
+    left: -2em;
+    color: var(--gold-deep);
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.78rem;
+    top: 3px;
+  }
+  nav.toc a { color: var(--text); text-decoration: none; border-bottom: 1px solid transparent; transition: border-color 0.15s; }
+  nav.toc a:hover { border-bottom-color: var(--gold); }
+
+  /* TABLE */
+  .tbl-wrap { overflow-x: auto; margin: 24px 0; }
+  table { width: 100%; border-collapse: collapse; font-size: 0.94rem; }
+  th, td { padding: 14px 16px; text-align: left; border-bottom: 1px solid var(--line); }
+  th { font-weight: 600; background: var(--gold-soft); font-size: 0.85rem; letter-spacing: 0.02em; }
+  td.num { font-variant-numeric: tabular-nums; font-family: 'JetBrains Mono', monospace; font-size: 0.88rem; }
+
+  /* BOXES */
+  .box {
+    background: var(--bg-card);
+    border-left: 3px solid var(--gold);
+    padding: 22px 28px;
+    margin: 24px 0;
+    border-radius: 0 4px 4px 0;
+  }
+  .box-dark {
+    background: var(--dark);
+    color: var(--bg);
+    padding: 28px 32px;
+    margin: 28px 0;
+    border-radius: 4px;
+  }
+  .box-dark p { color: rgba(250,250,247,0.85); }
+  .box-dark strong { color: var(--gold); font-weight: 500; }
+
+  /* PILL */
+  .pill {
+    display: inline-block;
+    font-size: 0.72rem;
+    font-weight: 500;
+    background: var(--gold-soft);
+    color: #6B5A2D;
+    padding: 3px 10px;
+    border-radius: 100px;
+    letter-spacing: 0.04em;
+    margin-right: 6px;
+    margin-bottom: 6px;
+    font-family: 'Inter', sans-serif;
+  }
+
+  /* GUION CARDS */
+  .angle-block { margin: 32px 0 24px; }
+  .angle-head {
+    display: flex;
+    align-items: baseline;
+    gap: 14px;
+    padding-bottom: 14px;
+    border-bottom: 1px solid var(--line);
+    margin-bottom: 20px;
+  }
+  .angle-num {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.85rem;
+    color: var(--gold-deep);
+    letter-spacing: 0.05em;
+  }
+  .angle-title {
+    font-family: 'Fraunces', serif;
+    font-weight: 500;
+    font-size: 1.4rem;
+    line-height: 1.2;
+  }
+  .angle-count {
+    margin-left: auto;
+    font-size: 0.78rem;
+    color: var(--text-mute);
+    font-variant-numeric: tabular-nums;
+    letter-spacing: 0.05em;
+  }
+  .guion {
+    background: var(--bg-card);
+    border: 1px solid var(--line);
+    padding: 22px 26px;
+    margin: 12px 0;
+    border-radius: 4px;
+  }
+  .guion-title {
+    font-family: 'Fraunces', serif;
+    font-weight: 500;
+    font-size: 1.1rem;
+    margin-bottom: 6px;
+  }
+  .guion-id {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.78rem;
+    color: var(--gold-deep);
+    margin-right: 8px;
+  }
+  .guion p { margin-bottom: 0.45em; font-size: 0.95rem; line-height: 1.55; }
+  .guion-line { margin: 10px 0; }
+  .guion-line strong {
+    display: inline-block;
+    min-width: 64px;
+    color: var(--text-mute);
+    font-size: 0.7rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    font-weight: 600;
+    margin-right: 8px;
+    vertical-align: top;
+  }
+  .guion-line span { display: inline-block; max-width: calc(100% - 80px); }
+
+  /* PLACEHOLDER */
+  .ph {
+    background: var(--gold-soft);
+    padding: 1px 6px;
+    border-radius: 3px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.82em;
+    color: #6B5A2D;
+    font-weight: 500;
+  }
+
+  /* CALLOUT */
+  .callout {
+    background: var(--bg-card);
+    border: 1px solid var(--line);
+    padding: 18px 22px;
+    margin: 20px 0;
+    border-radius: 4px;
+    font-size: 0.95rem;
+  }
+  .callout strong { color: var(--gold-deep); }
+
+  /* GRID */
+  .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin: 20px 0; }
+  .grid-card {
+    background: var(--bg-card);
+    border: 1px solid var(--line);
+    padding: 20px 22px;
+    border-radius: 4px;
+  }
+  .grid-card .label {
+    font-size: 0.72rem;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    color: var(--text-mute);
+    margin-bottom: 8px;
+    font-weight: 600;
+  }
+  .grid-card .val {
+    font-family: 'Fraunces', serif;
+    font-weight: 500;
+    font-size: 1.6rem;
+    margin-bottom: 6px;
+    color: var(--text);
+  }
+  .grid-card .desc { font-size: 0.88rem; color: var(--text-soft); line-height: 1.45; }
+
+  /* FOOTER */
+  footer {
+    padding: 50px 0 0;
+    color: var(--text-mute);
+    font-size: 0.85rem;
+    text-align: center;
+  }
+  .wordmark {
+    font-family: 'Fraunces', serif;
+    font-weight: 400;
+    font-size: 1.1rem;
+    color: var(--text);
+    letter-spacing: 0.01em;
+  }
+  .wordmark b { font-weight: 600; }
+
+  /* ANCHOR */
+  section[id] { scroll-margin-top: 30px; }
+
+  /* RESPONSIVE */
+  @media (max-width: 640px) {
+    html { font-size: 16px; }
+    .container { padding: 40px 20px 80px; }
+    h1 { font-size: 2.2rem; }
+    h2 { font-size: 1.55rem; }
+    h3 { font-size: 1.2rem; }
+    .hero { padding: 30px 0 30px; }
+    section { padding: 36px 0; }
+    .grid-2 { grid-template-columns: 1fr; }
+    nav.toc { padding: 22px 24px; }
+    .guion { padding: 18px 20px; }
+    .box, .box-dark { padding: 20px 22px; }
+  }
+</style>
+</head>
+<body>
+<div class="container">
+
+  <!-- HERO -->
+  <header class="hero">
+    <div class="eyebrow">Kunkay · Lanzamiento nueva línea champús · Meta Ads</div>
+    <h1>Atacar al cliente insatisfecho de la competencia.</h1>
+    <p class="lede">En lugar de educar tráfico frío sobre por qué importa un buen champú, el creativo segmenta y filtra a los dueños que ya compran champú y no están del todo contentos. Lanzamiento con 4 ad sets × 5 creativos en switcher strategy, 700€ en los primeros 7 días.</p>
+  </header>
+
+  <!-- TOC -->
+  <nav class="toc">
+    <h4>Índice</h4>
+    <ol>
+      <li><a href="#tldr">Resumen ejecutivo</a></li>
+      <li><a href="#tesis">La tesis: switcher en vez de awareness</a></li>
+      <li><a href="#estructura">Estructura de cuenta</a></li>
+      <li><a href="#inversion">Inversión y fases</a></li>
+      <li><a href="#angulos">Los 5 ángulos creativos</a></li>
+      <li><a href="#guiones">Los 20 guiones</a></li>
+      <li><a href="#metricas">Métricas y criterios de decisión</a></li>
+      <li><a href="#roadmap">Roadmap día a día</a></li>
+      <li><a href="#riesgos">Riesgos y errores típicos</a></li>
+      <li><a href="#placeholders">Placeholders pendientes</a></li>
+    </ol>
+  </nav>
+
+  <!-- TL;DR -->
+  <section id="tldr">
+    <h2><span class="num">01 — Resumen ejecutivo</span>El planteamiento en una página.</h2>
+    <p>Lanzamos la nueva línea de champús Kunkay en Meta Ads con <strong>switcher strategy</strong>: no educamos al mercado sobre la categoría, atacamos directamente a quien ya compra champú y no está contento con lo que usa. El creativo segmenta — la audiencia es broad.</p>
+
+    <div class="grid-2">
+      <div class="grid-card">
+        <div class="label">Estructura</div>
+        <div class="val">4 × 5</div>
+        <div class="desc">4 ad sets ABO con 5 creativos cada uno = 20 creativos en 5 ángulos distintos.</div>
+      </div>
+      <div class="grid-card">
+        <div class="label">Testing inicial</div>
+        <div class="val">700&nbsp;€</div>
+        <div class="desc">100&nbsp;€/día × 7 días para identificar 2-3 winners reales.</div>
+      </div>
+      <div class="grid-card">
+        <div class="label">Iteración</div>
+        <div class="val">1.000-1.400&nbsp;€</div>
+        <div class="desc">Días 8-14: re-grabamos winners en 10-14 variantes nuevas.</div>
+      </div>
+      <div class="grid-card">
+        <div class="label">Inversión 14 días</div>
+        <div class="val">~2.000&nbsp;€</div>
+        <div class="desc">A partir del día 15, scale + retargeting con CPA validado.</div>
+      </div>
+    </div>
+
+    <p>El objetivo de las primeras dos semanas no es vender — es <strong>identificar 4-6 creativos validados</strong> con métricas reales (CPA, hook rate, hold rate) para escalar con confianza.</p>
+  </section>
+
+  <!-- TESIS -->
+  <section id="tesis">
+    <h2><span class="num">02 — La tesis</span>Por qué switcher en vez de awareness.</h2>
+
+    <p>El error típico al lanzar una línea nueva es atacar tráfico frío con creativos educativos: "por qué importa un buen champú", "los ingredientes que no quieres en tu mascota", etc. Funciona, pero es <strong>el funnel más caro</strong>: tienes que pasar al usuario por awareness → consideration → conversion en un solo journey.</p>
+
+    <p>La alternativa: el usuario insatisfecho de la competencia ya ha hecho el trabajo por ti.</p>
+
+    <ul>
+      <li>Ya sabe que necesita champú especial para su mascota.</li>
+      <li>Ya tiene presupuesto asignado a la categoría.</li>
+      <li>Está activamente molesto con lo que usa.</li>
+      <li>Está mucho más cerca de la compra que un frío puro.</li>
+    </ul>
+
+    <div class="box">
+      <p><strong>El problema técnico</strong>: en Meta no se puede targetear "clientes de Trixie" o "clientes del super que compran champú barato". La forma de hacerlo es <strong>dejar que el creativo haga el targeting</strong>: hooks tipo "si llevas meses con champú del super y tu perro sigue rascándose…" autoseleccionan al insatisfecho y autoexcluyen al resto.</p>
+    </div>
+
+    <p>Por eso la audiencia es broad / Advantage+. No queremos restringir a Meta — queremos que reparta lo más ancho posible y que el creativo filtre. Cada hook es un sub-mercado de insatisfechos distinto.</p>
+
+    <h3>Por qué no atacamos al fiel de la competencia</h3>
+    <p>El fiel ya está educado pero ya tomó decisión. Convertirlo es 5-10× más caro que captar al insatisfecho. La estrategia identifica con disqualifiers a quien <em>se está cuestionando</em> su elección actual — esa es la audiencia rentable.</p>
+  </section>
+
+  <!-- ESTRUCTURA -->
+  <section id="estructura">
+    <h2><span class="num">03 — Estructura de cuenta</span>1 campaña, 4 ad sets, 20 creativos.</h2>
+
+    <h4>Campaña</h4>
+    <ul>
+      <li><strong>Objetivo</strong>: Sales (compra).</li>
+      <li><strong>Tipo</strong>: ABO (Ad Set Budget Optimization), no CBO. Queremos garantizar que cada ad set reciba su parte sin que Meta favorezca uno y mate los otros tres.</li>
+      <li><strong>Optimización</strong>: Purchase event con CAPI activo.</li>
+    </ul>
+
+    <h4>Ad sets (× 4, idénticos)</h4>
+    <ul>
+      <li><strong>Presupuesto</strong>: 25 €/día por ad set.</li>
+      <li><strong>Targeting</strong>: broad / Advantage+ Audience ON. Edad 25-55, ambos géneros, España.</li>
+      <li><strong>Exclusiones</strong>: compradores 90 días + engagers Instagram/Facebook 30 días (eso va a campaña de retargeting aparte).</li>
+      <li><strong>Placements</strong>: Advantage+ Placements (todos).</li>
+      <li><strong>Ubicación</strong>: España (excluir Canarias si hay tema de envíos).</li>
+    </ul>
+
+    <h4>Por qué los 4 ad sets idénticos en targeting</h4>
+    <p>Esto es <strong>testing puro de creativo</strong>, sin mezclar variables. Si cada ad set tuviera targeting distinto (uno broad, uno intereses, uno LAL), no sabríamos si el resultado lo mueve el creativo o la audiencia. Audiencias diferenciadas vienen en Fase 2-3 cuando ya tenemos creative winners validados.</p>
+
+    <h4>Reparto de creativos por ad set</h4>
+    <p>Cada ad set lleva 5 creativos de ángulos mezclados (no agrupados por ángulo). Razón: si pones los 5 disqualifiers juntos en un ad set y resulta que el ángulo no funciona, pierdes 175 € confirmando algo que podías ver con uno. Mezclando, cada ad set tiene representación de varios ángulos.</p>
+  </section>
+
+  <!-- INVERSIÓN -->
+  <section id="inversion">
+    <h2><span class="num">04 — Inversión y fases</span>Tres fases en 21+ días.</h2>
+
+    <div class="tbl-wrap">
+      <table>
+        <thead>
+          <tr><th>Fase</th><th>Días</th><th>Spend</th><th>Objetivo</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>Testing</td><td>1-7</td><td class="num">700 €</td><td>Identificar 2-3 winners</td></tr>
+          <tr><td>Iteración</td><td>8-14</td><td class="num">1.000-1.400 €</td><td>10-14 variantes nuevas de winners</td></tr>
+          <tr><td>Scale</td><td>15+</td><td class="num">A definir</td><td>Subir budget en winners validados</td></tr>
+          <tr><td>Retargeting (paralelo)</td><td>15+</td><td class="num">200-400 €/sem</td><td>Engagers 30d, visitors 30d, ATC 14d</td></tr>
+          <tr><td>Lookalike (a 100+ pedidos)</td><td>~30+</td><td class="num">A definir</td><td>LAL 1-3% compradores</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h3>Fase 1 — Testing (días 1-7)</h3>
+    <p>100 €/día × 7 días = 700 €. Repartido entre 4 ad sets de 25 €/día.</p>
+    <p>Cada creativo recibirá entre 20 € y 50 € al final de la semana (Meta repartirá desigual, pero al estar en 4 ad sets el sesgo se diluye).</p>
+
+    <h3>Fase 2 — Iteración (días 8-14)</h3>
+    <p>Asumimos 2 winners. Lo que <strong>no</strong> hay que hacer: simplemente subir presupuesto. Eso satura la audiencia en 2-3 días y mata el CPA.</p>
+    <p>Lo que sí: iterar el winner en 5-7 variantes nuevas por cada uno = 10-14 creativos nuevos.</p>
+    <ul>
+      <li>Mismo guion, otra persona/talento.</li>
+      <li>Mismo guion, distinto hook (3 versiones de los primeros 3 segundos).</li>
+      <li>Mismo guion, distinta duración (15s, 30s, 45s).</li>
+      <li>Mismo guion, distinto formato (1:1, 9:16, 4:5).</li>
+      <li>Mismo guion en estático o carrusel.</li>
+      <li>Mismo guion con CTA distinto (oferta vs. garantía vs. urgencia).</li>
+    </ul>
+    <p>Los winners originales siguen corriendo como control. Si una iteración no los supera, no escala.</p>
+
+    <h3>Fase 3 — Scale (día 15+)</h3>
+    <p>Cuando 2-3 iteraciones igualan o superan al winner original, subimos budget en incrementos del <strong>20-30% cada 2-3 días</strong>. Más rápido resetea learning.</p>
+    <p>En paralelo:</p>
+    <ul>
+      <li><strong>Retargeting</strong> (campaña separada, CBO) sobre engagers 30d, visitors web 30d, ATC 14d. Oferta más agresiva.</li>
+      <li><strong>Lookalike 1-3%</strong> sobre compradores cuando haya 100+ pedidos. No antes.</li>
+    </ul>
+  </section>
+
+  <!-- ÁNGULOS -->
+  <section id="angulos">
+    <h2><span class="num">05 — Los 5 ángulos creativos</span>El creativo segmenta, no la audiencia.</h2>
+
+    <p>Los 20 creativos se reparten en 5 ángulos. Todos son switcher (parten del supuesto de que el usuario ya compra champú). Ninguno es awareness puro.</p>
+
+    <div class="angle-block">
+      <div class="angle-head">
+        <span class="angle-num">01</span>
+        <span class="angle-title">Disqualifier callout</span>
+        <span class="angle-count">5 creativos</span>
+      </div>
+      <p>Hooks que filtran al insatisfecho directo. "Si tu perro sigue oliendo a las 48h del baño…", "Si llevas meses con champú del super y la piel no mejora…". Talking head 15-25s, formato UGC, cero producción.</p>
+    </div>
+
+    <div class="angle-block">
+      <div class="angle-head">
+        <span class="angle-num">02</span>
+        <span class="angle-title">Comparativa de ingredientes basura</span>
+        <span class="angle-count">4 creativos</span>
+      </div>
+      <p>Etiqueta de champú genérico con sulfatos / parabenos / fragancias marcados en rojo vs. Kunkay limpio al lado. Voiceover educativo tipo "lo que NO quieres ver en el champú de tu perro". Sin nombrar marca por legal. El insatisfecho gira su bote en mitad del vídeo.</p>
+    </div>
+
+    <div class="angle-block">
+      <div class="angle-head">
+        <span class="angle-num">03</span>
+        <span class="angle-title">María (CEO) dice la verdad incómoda</span>
+        <span class="angle-count">3 creativos</span>
+      </div>
+      <p>María a cámara explicando por qué creó la línea. Posiciona a Kunkay como el insider que dice lo que el sector calla. Construye marca, no solo conversión.</p>
+    </div>
+
+    <div class="angle-block">
+      <div class="angle-head">
+        <span class="angle-num">04</span>
+        <span class="angle-title">Switch story (UGC cliente real)</span>
+        <span class="angle-count">4 creativos</span>
+      </div>
+      <p>"Llevaba 3 años con [genérico]. Probé Kunkay. Esto pasó en 2 semanas." Before/after visible. El dueño insatisfecho se ve a sí mismo.</p>
+    </div>
+
+    <div class="angle-block">
+      <div class="angle-head">
+        <span class="angle-num">05</span>
+        <span class="angle-title">Filtro por raza o problema específico</span>
+        <span class="angle-count">4 creativos</span>
+      </div>
+      <p>Ultra-segmentación creativa. "Si tienes Bulldog Francés, Carlino o Westie…" o "Para perros con dermatitis recurrente que han probado de todo". Filtra muy fino, lo que entra convierte caro pero alto.</p>
+    </div>
+  </section>
+
+  <!-- GUIONES -->
+  <section id="guiones">
+    <h2><span class="num">06 — Los 20 guiones</span>Hook + body + CTA + rodaje.</h2>
+
+    <p>Los datos entre <span class="ph">[CORCHETES]</span> son placeholders que se rellenan cuando lleguen los datos finales (ingrediente diferencial, claims, SKUs, etc.). Listado completo al final del documento.</p>
+
+    <!-- ÁNGULO 1 -->
+    <div class="angle-head" style="margin-top:40px;">
+      <span class="angle-num">A1</span>
+      <span class="angle-title">Disqualifier callout</span>
+      <span class="angle-count">5 / 20</span>
+    </div>
+
+    <div class="guion">
+      <h4 class="guion-title"><span class="guion-id">C1.1</span> Vuelve a oler a las 48h</h4>
+      <div class="guion-line"><strong>Hook</strong><span>"Si bañas a tu perro el domingo y el martes ya huele otra vez, no es tu perro — es el champú."</span></div>
+      <div class="guion-line"><strong>Body</strong><span>"El champú del super tapa el olor con fragancia. 24h después, vuelve peor. Kunkay <span class="ph">[CLAIM_PRINCIPAL]</span> con <span class="ph">[INGREDIENTE_DIFERENCIAL]</span> — no tapa, neutraliza."</span></div>
+      <div class="guion-line"><strong>CTA</strong><span>"Pruébalo. Si en 2 semanas no notas la diferencia, te devolvemos el dinero."</span></div>
+      <div class="guion-line"><strong>Rodaje</strong><span>UGC talking head, persona 30-45 años, móvil vertical, perro a la vista. 15-20s. 9:16.</span></div>
+    </div>
+
+    <div class="guion">
+      <h4 class="guion-title"><span class="guion-id">C1.2</span> Sigue rascándose después del baño</h4>
+      <div class="guion-line"><strong>Hook</strong><span>"Si tu perro acaba el baño y a las dos horas ya está rascándose otra vez, el problema no es la piel. Es el champú."</span></div>
+      <div class="guion-line"><strong>Body</strong><span>"Los sulfatos secan la barrera natural del manto. Lavas, le destrozas la piel, le pica más. Kunkay no lleva <span class="ph">[INGREDIENTE_A_EVITAR]</span>."</span></div>
+      <div class="guion-line"><strong>CTA</strong><span>"Mira la composición completa en kunkay.com/<span class="ph">[SKU_NOMBRE]</span>."</span></div>
+      <div class="guion-line"><strong>Rodaje</strong><span>UGC con B-roll real del perro rascándose al inicio. 20s. 9:16.</span></div>
+    </div>
+
+    <div class="guion">
+      <h4 class="guion-title"><span class="guion-id">C1.3</span> Pelo apagado por mucho que cepilles</h4>
+      <div class="guion-line"><strong>Hook</strong><span>"Cepillas a tu perro todos los días y sigue teniendo el pelo como un estropajo. No es genética. Es el champú."</span></div>
+      <div class="guion-line"><strong>Body</strong><span>"Un champú con pH humano (5,5) destroza el manto canino (pH 7). Por eso queda áspero. Kunkay está formulado a <span class="ph">[pH_KUNKAY]</span> específico para <span class="ph">[TIPO_PIEL]</span>."</span></div>
+      <div class="guion-line"><strong>CTA</strong><span>"Descubre <span class="ph">[SKU_NOMBRE]</span> en kunkay.com."</span></div>
+      <div class="guion-line"><strong>Rodaje</strong><span>Comparativa visual de pelo apagado vs pelo brillante. 15s. 4:5.</span></div>
+    </div>
+
+    <div class="guion">
+      <h4 class="guion-title"><span class="guion-id">C1.4</span> Piel seca y caspa que no se va</h4>
+      <div class="guion-line"><strong>Hook</strong><span>"Si tu perro tiene caspa o piel escamada y has probado tres champús distintos, deja de probar champús del super."</span></div>
+      <div class="guion-line"><strong>Body</strong><span>"<span class="ph">[PROBLEMA_TARGET]</span> no se soluciona con más baños — se soluciona con la formulación correcta. <span class="ph">[INGREDIENTE_DIFERENCIAL]</span> hidrata sin romper barrera."</span></div>
+      <div class="guion-line"><strong>CTA</strong><span>"<span class="ph">[OFERTA_LANZAMIENTO]</span>. Sin compromiso."</span></div>
+      <div class="guion-line"><strong>Rodaje</strong><span>UGC con primer plano de piel/pelo mostrando problema. 25s. 9:16.</span></div>
+    </div>
+
+    <div class="guion">
+      <h4 class="guion-title"><span class="guion-id">C1.5</span> Manchas de lágrimas que no se quitan</h4>
+      <div class="guion-line"><strong>Hook</strong><span>"Si tienes un perro de pelo blanco con manchas de lágrimas marrones, la solución no es limpiárselas todos los días."</span></div>
+      <div class="guion-line"><strong>Body</strong><span>"Es un problema de bacterias y composición del manto facial. <span class="ph">[INGREDIENTE_DIFERENCIAL]</span> reduce la oxidación que mancha. No es cosmético, es bioquímico."</span></div>
+      <div class="guion-line"><strong>CTA</strong><span>"Mira <span class="ph">[SKU_NOMBRE]</span> en kunkay.com."</span></div>
+      <div class="guion-line"><strong>Rodaje</strong><span>UGC con perro pequeño blanco (Maltés, Bichón, Caniche). 20s. 9:16.</span></div>
+    </div>
+
+    <!-- ÁNGULO 2 -->
+    <div class="angle-head" style="margin-top:40px;">
+      <span class="angle-num">A2</span>
+      <span class="angle-title">Comparativa de ingredientes</span>
+      <span class="angle-count">4 / 20</span>
+    </div>
+
+    <div class="guion">
+      <h4 class="guion-title"><span class="guion-id">C2.1</span> Sulfatos (SLS / SLES)</h4>
+      <div class="guion-line"><strong>Hook</strong><span>"Gira el bote del champú de tu perro y busca esto: 'Sodium Lauryl Sulfate' o 'SLES'. Si lo lleva, estás lavando a tu perro con detergente."</span></div>
+      <div class="guion-line"><strong>Body</strong><span>B-roll de etiqueta marcando en rojo SLS / SLES. Texto en pantalla: "Mismo ingrediente que el lavavajillas". Cut a etiqueta Kunkay limpia. "Kunkay: sin sulfatos, sin excusas."</span></div>
+      <div class="guion-line"><strong>CTA</strong><span>"Composición completa en kunkay.com/<span class="ph">[SKU_NOMBRE]</span>."</span></div>
+      <div class="guion-line"><strong>Rodaje</strong><span>Estático / motion graphics. 15s. 4:5 + 9:16.</span></div>
+    </div>
+
+    <div class="guion">
+      <h4 class="guion-title"><span class="guion-id">C2.2</span> Parabenos</h4>
+      <div class="guion-line"><strong>Hook</strong><span>"Si la etiqueta del champú lleva la palabra 'paraben' en cualquier sitio, tu perro está absorbiendo eso por la piel cada vez que lo bañas."</span></div>
+      <div class="guion-line"><strong>Body</strong><span>"Methylparaben, propylparaben, butylparaben — disruptores hormonales prohibidos en cosmética infantil en varios países. En champú de perro: vía libre. Kunkay: cero parabenos."</span></div>
+      <div class="guion-line"><strong>CTA</strong><span>"Lee la etiqueta tú mismo."</span></div>
+      <div class="guion-line"><strong>Rodaje</strong><span>Motion graphics con ingredientes en pantalla. 20s. 1:1 + 9:16.</span></div>
+    </div>
+
+    <div class="guion">
+      <h4 class="guion-title"><span class="guion-id">C2.3</span> Fragancias sintéticas y alcohol</h4>
+      <div class="guion-line"><strong>Hook</strong><span>"El olor a 'recién bañado' que viene del champú barato no es limpio — es alcohol y fragancia sintética enmascarando el problema."</span></div>
+      <div class="guion-line"><strong>Body</strong><span>"Tu perro se relame, ingiere, se lo absorbe. Kunkay usa <span class="ph">[SISTEMA_AROMÁTICO_KUNKAY]</span> — el olor viene del manto limpio, no de un perfume."</span></div>
+      <div class="guion-line"><strong>CTA</strong><span>"Mira <span class="ph">[SKU_NOMBRE]</span>."</span></div>
+      <div class="guion-line"><strong>Rodaje</strong><span>Comparativa de etiquetas + close-up de perro lamiéndose. 20s. 9:16.</span></div>
+    </div>
+
+    <div class="guion">
+      <h4 class="guion-title"><span class="guion-id">C2.4</span> pH humano en perros</h4>
+      <div class="guion-line"><strong>Hook</strong><span>"Si bañas a tu perro con champú que pone 'pH neutro', mal. El pH neutro humano (5,5) es ácido para tu perro."</span></div>
+      <div class="guion-line"><strong>Body</strong><span>Motion graphic con escala de pH. Perro = pH 6,5-7,5. Humano = 5,5. Champú humano en perro = barrera rota. Kunkay = formulado al pH canino específico.</span></div>
+      <div class="guion-line"><strong>CTA</strong><span>"Descubre por qué importa en kunkay.com."</span></div>
+      <div class="guion-line"><strong>Rodaje</strong><span>Motion graphics educativo. 25s. 1:1 + 9:16.</span></div>
+    </div>
+
+    <!-- ÁNGULO 3 -->
+    <div class="angle-head" style="margin-top:40px;">
+      <span class="angle-num">A3</span>
+      <span class="angle-title">María (CEO)</span>
+      <span class="angle-count">3 / 20</span>
+    </div>
+
+    <div class="guion">
+      <h4 class="guion-title"><span class="guion-id">C3.1</span> Por qué creé Kunkay</h4>
+      <div class="guion-line"><strong>Hook</strong><span>"Llevo <span class="ph">[AÑOS_MARIA_EN_SECTOR]</span> años en mascotas. La razón por la que monté Kunkay es muy simple: estaba harta de mentir a clientes recomendándoles champús que sabía que eran malos."</span></div>
+      <div class="guion-line"><strong>Body</strong><span>María a cámara, fondo natural. "El 90% de lo que se vende en super y tiendas grandes es detergente con perfume. Y los premium que hay en España, o son carísimos o son marketing. Hicimos Kunkay para tener un champú al que yo pudiera mirar a la cara y decir: esto sí."</span></div>
+      <div class="guion-line"><strong>CTA</strong><span>"Soy María, fundadora de Kunkay. Pruébalo."</span></div>
+      <div class="guion-line"><strong>Rodaje</strong><span>Talking head profesional pero no corporativo. 30-45s. 9:16 + 1:1.</span></div>
+    </div>
+
+    <div class="guion">
+      <h4 class="guion-title"><span class="guion-id">C3.2</span> La verdad incómoda del sector</h4>
+      <div class="guion-line"><strong>Hook</strong><span>"Te voy a contar algo que en mi sector nadie dice: la mayoría de champús para perros que se venden en España no están formulados pensando en el perro. Están formulados pensando en el coste."</span></div>
+      <div class="guion-line"><strong>Body</strong><span>María. "Sulfato porque hace espuma y la espuma vende. Fragancia fuerte porque al dueño le gusta. Y luego el perro se rasca, huele a los dos días y nadie sabe por qué. Kunkay va al revés: formulación primero, marketing después."</span></div>
+      <div class="guion-line"><strong>CTA</strong><span>"<span class="ph">[OFERTA_LANZAMIENTO]</span> en kunkay.com."</span></div>
+      <div class="guion-line"><strong>Rodaje</strong><span>Talking head con B-roll de María oliendo botes, leyendo etiquetas. 40s.</span></div>
+    </div>
+
+    <div class="guion">
+      <h4 class="guion-title"><span class="guion-id">C3.3</span> Cómo desarrollamos <span class="ph">[SKU_NOMBRE]</span></h4>
+      <div class="guion-line"><strong>Hook</strong><span>"Esta es la nueva línea de Kunkay y tardamos <span class="ph">[TIEMPO_DESARROLLO]</span> en sacarla. Te cuento por qué."</span></div>
+      <div class="guion-line"><strong>Body</strong><span>María mostrando el producto. "Queríamos resolver <span class="ph">[PROBLEMA_TARGET]</span> sin recurrir a <span class="ph">[INGREDIENTE_A_EVITAR]</span>. Probamos <span class="ph">[N_FORMULACIONES]</span> formulaciones hasta dar con <span class="ph">[INGREDIENTE_DIFERENCIAL]</span>. No es marketing, es química."</span></div>
+      <div class="guion-line"><strong>CTA</strong><span>"Pruébalo. Devolución garantizada."</span></div>
+      <div class="guion-line"><strong>Rodaje</strong><span>María con producto en mano, B-roll de laboratorio / proceso si hay. 35s.</span></div>
+    </div>
+
+    <!-- ÁNGULO 4 -->
+    <div class="angle-head" style="margin-top:40px;">
+      <span class="angle-num">A4</span>
+      <span class="angle-title">Switch story (UGC)</span>
+      <span class="angle-count">4 / 20</span>
+    </div>
+
+    <div class="guion">
+      <h4 class="guion-title"><span class="guion-id">C4.1</span> 3 años con genérico, 2 semanas con Kunkay</h4>
+      <div class="guion-line"><strong>Hook</strong><span>"Llevaba tres años bañando a mi perro con <span class="ph">[TIPO_CHAMPU_GENERICO]</span>. Probé Kunkay hace dos semanas. Mira."</span></div>
+      <div class="guion-line"><strong>Body</strong><span>Dueño/a enseña al perro. "Pelo más brillante, no se rasca, y el olor aguanta una semana en vez de dos días. No me esperaba esto de un champú."</span></div>
+      <div class="guion-line"><strong>CTA</strong><span>"Pruébalo tú. Si no notas la diferencia, devolución completa."</span></div>
+      <div class="guion-line"><strong>Rodaje</strong><span>UGC real cliente. Before/after si hay material. 25s. 9:16.</span></div>
+    </div>
+
+    <div class="guion">
+      <h4 class="guion-title"><span class="guion-id">C4.2</span> Mi perro tiene piel sensible, probamos todo</h4>
+      <div class="guion-line"><strong>Hook</strong><span>"Mi <span class="ph">[RAZA_PERRO]</span> lleva años con la piel jodida. Probamos champús de veterinario, hipoalergénicos, naturales… nada."</span></div>
+      <div class="guion-line"><strong>Body</strong><span>"Empecé con Kunkay porque una amiga insistió. A las tres semanas mi perro dejó de rascarse en la espalda. Para mí ya está, no cambio."</span></div>
+      <div class="guion-line"><strong>CTA</strong><span>"Si tu perro tiene piel sensible, mira <span class="ph">[SKU_NOMBRE]</span>."</span></div>
+      <div class="guion-line"><strong>Rodaje</strong><span>UGC enseñando zonas del perro ya sin irritar. 30s. 9:16.</span></div>
+    </div>
+
+    <div class="guion">
+      <h4 class="guion-title"><span class="guion-id">C4.3</span> Probé 10 champús, este es el último que voy a comprar</h4>
+      <div class="guion-line"><strong>Hook</strong><span>"En los últimos dos años he comprado diez champús distintos para mi perro. Caros, baratos, naturales, de vet. Te enseño los que probé."</span></div>
+      <div class="guion-line"><strong>Body</strong><span>Persona enseñando línea de botes en el suelo. "Ninguno me convenció del todo. Este [Kunkay] es el primero que llevo repitiendo tres veces seguidas."</span></div>
+      <div class="guion-line"><strong>CTA</strong><span>"Línea completa en kunkay.com."</span></div>
+      <div class="guion-line"><strong>Rodaje</strong><span>UGC con prop (10 botes), high-trust. 30s. 9:16.</span></div>
+    </div>
+
+    <div class="guion">
+      <h4 class="guion-title"><span class="guion-id">C4.4</span> Veterinaria / groomer recomendando</h4>
+      <div class="guion-line"><strong>Hook</strong><span>"Soy <span class="ph">[VETERINARIA_O_GROOMER]</span> desde hace <span class="ph">[AÑOS]</span> años. Mis clientes me preguntan todo el rato qué champú recomiendo. Te lo digo."</span></div>
+      <div class="guion-line"><strong>Body</strong><span>Profesional en su entorno (clínica / peluquería canina). "Hace seis meses probé Kunkay con perros de clientes con <span class="ph">[PROBLEMA_TARGET]</span>. Mejora real, no marketing. Ahora lo recomiendo."</span></div>
+      <div class="guion-line"><strong>CTA</strong><span>"<span class="ph">[SKU_NOMBRE]</span> en kunkay.com."</span></div>
+      <div class="guion-line"><strong>Rodaje</strong><span>Profesional en uniforme, entorno real (no publicitario). 35s. 9:16.</span></div>
+    </div>
+
+    <!-- ÁNGULO 5 -->
+    <div class="angle-head" style="margin-top:40px;">
+      <span class="angle-num">A5</span>
+      <span class="angle-title">Filtro por raza / problema</span>
+      <span class="angle-count">4 / 20</span>
+    </div>
+
+    <div class="guion">
+      <h4 class="guion-title"><span class="guion-id">C5.1</span> Razas piel sensible (Bulldog Francés, Carlino, Westie)</h4>
+      <div class="guion-line"><strong>Hook</strong><span>"Si tienes un Bulldog Francés, Carlino o Westie, tu perro tiene la piel jodida por genética. No es culpa tuya."</span></div>
+      <div class="guion-line"><strong>Body</strong><span>"Son razas con pliegues, piel fina y predisposición a dermatitis. La mayoría de champús los empeoran. Kunkay <span class="ph">[SKU_RAZAS_SENSIBLES]</span> está formulado para esto: <span class="ph">[INGREDIENTE_DIFERENCIAL]</span>."</span></div>
+      <div class="guion-line"><strong>CTA</strong><span>"Si tienes una de estas razas, pruébalo."</span></div>
+      <div class="guion-line"><strong>Rodaje</strong><span>UGC con dueño/a de raza concreta. B-roll del perro. 25s. 9:16.</span></div>
+    </div>
+
+    <div class="guion">
+      <h4 class="guion-title"><span class="guion-id">C5.2</span> Razas de pelo largo (Golden, Border, Yorkie)</h4>
+      <div class="guion-line"><strong>Hook</strong><span>"Si tienes un Golden, Border Collie o un Yorkie, el champú que uses determina el 80% del estado de su pelo."</span></div>
+      <div class="guion-line"><strong>Body</strong><span>"Pelo largo + champú con sulfato = enredos, pelo opaco, manto seco. <span class="ph">[SKU_PELO_LARGO]</span> hidrata desde el folículo. No es acondicionador, es la formulación base."</span></div>
+      <div class="guion-line"><strong>CTA</strong><span>"Línea pelo largo en kunkay.com."</span></div>
+      <div class="guion-line"><strong>Rodaje</strong><span>B-roll de razas pelo largo, dueño/a explicando. 25s. 9:16.</span></div>
+    </div>
+
+    <div class="guion">
+      <h4 class="guion-title"><span class="guion-id">C5.3</span> Razas con olor fuerte</h4>
+      <div class="guion-line"><strong>Hook</strong><span>"Si tienes un Bulldog Inglés, un Mastín o un Bóxer, sabes que huelen fuerte. La solución no es bañarlos más."</span></div>
+      <div class="guion-line"><strong>Body</strong><span>"Bañarlos más rompe el manto y huelen peor a los dos días. <span class="ph">[SKU_NOMBRE]</span> neutraliza con <span class="ph">[INGREDIENTE_DIFERENCIAL]</span> — bañas menos, huele menos."</span></div>
+      <div class="guion-line"><strong>CTA</strong><span>"Mira <span class="ph">[SKU_NOMBRE]</span>."</span></div>
+      <div class="guion-line"><strong>Rodaje</strong><span>UGC con raza concreta + B-roll. 25s. 9:16.</span></div>
+    </div>
+
+    <div class="guion">
+      <h4 class="guion-title"><span class="guion-id">C5.4</span> Cachorros y perros mayores</h4>
+      <div class="guion-line"><strong>Hook</strong><span>"Si tu perro es cachorro o ya tiene años, la piel es más fina y delicada. Bañarlo con champú normal le hace más daño que bien."</span></div>
+      <div class="guion-line"><strong>Body</strong><span>"Cachorro: barrera cutánea aún inmadura. Perro mayor: piel más seca y reactiva. <span class="ph">[SKU_CACHORROS_O_SENIOR]</span> está formulado específicamente para esto."</span></div>
+      <div class="guion-line"><strong>CTA</strong><span>"Descúbrelo en kunkay.com."</span></div>
+      <div class="guion-line"><strong>Rodaje</strong><span>UGC con cachorro y/o perro mayor. 25s. 9:16.</span></div>
+    </div>
+  </section>
+
+  <!-- MÉTRICAS -->
+  <section id="metricas">
+    <h2><span class="num">07 — Métricas y criterios de decisión</span>Qué leemos a día 7.</h2>
+
+    <p>Un winner real no es solo CPA. Con 30-40 € de spend por creativo, la muestra es pequeña y un CPA bueno puede ser suerte. Cruzamos 4 métricas:</p>
+
+    <div class="tbl-wrap">
+      <table>
+        <thead>
+          <tr><th>Métrica</th><th>Qué mide</th><th>Umbral mínimo</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>CPA</td><td>Coste por compra real</td><td class="num">Bajo target (definir)</td></tr>
+          <tr><td>CTR outbound</td><td>% click hacia la web</td><td class="num">&gt; 1,2 %</td></tr>
+          <tr><td>Hook rate (3s)</td><td>% que aguanta los primeros 3 segundos</td><td class="num">&gt; 25 %</td></tr>
+          <tr><td>Hold rate (15s)</td><td>% que sigue a los 15 segundos</td><td class="num">&gt; 10 %</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <p>Un winner cumple las 4. Si solo cumple CPA pero el hook rate es bajo, no escala — Meta no tendrá señal suficiente para encontrar más usuarios similares.</p>
+
+    <div class="box">
+      <p><strong>Regla de oro</strong>: no leas resultados hasta día 5-6. La ansiedad de pausar a día 2 es el error más caro del testing. Meta necesita salir de learning antes de que las métricas signifiquen algo.</p>
+    </div>
+  </section>
+
+  <!-- ROADMAP -->
+  <section id="roadmap">
+    <h2><span class="num">08 — Roadmap día a día</span>21 días, fase a fase.</h2>
+
+    <h4>Días -3 a 0 — Preparación</h4>
+    <ul>
+      <li>Validar pixel + CAPI funcionando (test events en Meta Events Manager).</li>
+      <li>Validar CVR de landing mínimo 1,5-2% a cold (si está por debajo, parar y arreglar landing antes de testear creativos).</li>
+      <li>Rellenar placeholders en los 20 guiones con datos finales.</li>
+      <li>Producir los 20 creativos.</li>
+      <li>Configurar exclusiones de audiencia (compradores 90d, engagers 30d).</li>
+    </ul>
+
+    <h4>Día 1 (martes-miércoles, no lunes) — Lanzamiento</h4>
+    <ul>
+      <li>Subir campaña, 4 ad sets, 20 creativos.</li>
+      <li>NO lanzar viernes / fin de semana — ruido en learning.</li>
+    </ul>
+
+    <h4>Días 2-4 — No tocar</h4>
+    <ul>
+      <li>Revisar 1 vez al día solo entrega y errores técnicos.</li>
+      <li>No pausar creativos. No mover budget. No editar nada.</li>
+    </ul>
+
+    <h4>Día 5 — Primera lectura</h4>
+    <ul>
+      <li>Si algún ad set tiene CPA 3× target y CTR <0,5%, pausar SOLO ese ad set y reasignar budget. Solo si está muy claro.</li>
+    </ul>
+
+    <h4>Día 7 — Análisis</h4>
+    <ul>
+      <li>Identificar 2-3 winners cruzando las 4 métricas.</li>
+      <li>Identificar 2-3 losers claros.</li>
+      <li>El resto: data inconclusa, no se escala ni se descarta todavía.</li>
+    </ul>
+
+    <h4>Días 8-14 — Iteración</h4>
+    <ul>
+      <li>Subir 10-14 variantes de los winners (talento distinto, hook distinto, duración distinta, formato distinto).</li>
+      <li>Winners originales siguen corriendo como control.</li>
+    </ul>
+
+    <h4>Día 15+ — Scale</h4>
+    <ul>
+      <li>Subir budget en winners validados: +20-30% cada 2-3 días.</li>
+      <li>Lanzar campaña retargeting (engagers 30d + ATC 14d).</li>
+      <li>A 100+ compras: lanzar LAL 1-3%.</li>
+    </ul>
+  </section>
+
+  <!-- RIESGOS -->
+  <section id="riesgos">
+    <h2><span class="num">09 — Riesgos y errores típicos</span>Lo que puede joder el test.</h2>
+
+    <div class="box-dark">
+      <p><strong>Pixel y CAPI mal configurados.</strong> Si la señal de compra no llega bien a Meta, los CPA que veas no serán reales. Antes de testear: probar checkout en sandbox + ver eventos en Events Manager + match quality &gt;7/10.</p>
+    </div>
+
+    <div class="box-dark">
+      <p><strong>Landing con CVR pobre.</strong> Si la landing convierte mal, todos los creativos parecerán losers. Mínimo 1,5-2% a cold antes de meter dinero. Si está peor, arreglar landing primero.</p>
+    </div>
+
+    <div class="box-dark">
+      <p><strong>Pausar demasiado pronto.</strong> El instinto de pausar a día 2 porque "no funciona" es el error más caro. Meta tarda 3-4 días en salir de learning. Cualquier decisión antes de día 5 es ruido.</p>
+    </div>
+
+    <div class="box-dark">
+      <p><strong>Subir budget demasiado rápido en Fase 3.</strong> Más del 30% / 2 días = resetea learning y mata el CPA. Subir despacio, asumir que el scale es maratón.</p>
+    </div>
+
+    <div class="box-dark">
+      <p><strong>Lanzar lunes o fin de semana.</strong> Ruido en learning. Martes o miércoles es la ventana correcta.</p>
+    </div>
+  </section>
+
+  <!-- PLACEHOLDERS -->
+  <section id="placeholders">
+    <h2><span class="num">10 — Placeholders pendientes</span>Datos a rellenar antes de rodaje.</h2>
+
+    <p>Los siguientes campos están como <span class="ph">[PLACEHOLDER]</span> en los 20 guiones. Cuando lleguen los datos finales, se vuelcan en bloque.</p>
+
+    <div class="tbl-wrap">
+      <table>
+        <thead>
+          <tr><th>Placeholder</th><th>Qué es</th></tr>
+        </thead>
+        <tbody>
+          <tr><td><span class="ph">[INGREDIENTE_DIFERENCIAL]</span></td><td>El activo estrella de Kunkay (lo que diferencia formulación)</td></tr>
+          <tr><td><span class="ph">[CLAIM_PRINCIPAL]</span></td><td>Beneficio top-line de la línea nueva</td></tr>
+          <tr><td><span class="ph">[INGREDIENTE_A_EVITAR]</span></td><td>Lo que Kunkay no lleva (sulfatos, parabenos…)</td></tr>
+          <tr><td><span class="ph">[SKU_NOMBRE]</span></td><td>Nombre del SKU principal de la línea</td></tr>
+          <tr><td><span class="ph">[SKU_RAZAS_SENSIBLES]</span></td><td>SKU específico para razas piel sensible</td></tr>
+          <tr><td><span class="ph">[SKU_PELO_LARGO]</span></td><td>SKU específico para pelo largo</td></tr>
+          <tr><td><span class="ph">[SKU_CACHORROS_O_SENIOR]</span></td><td>SKU para cachorros / perros mayores</td></tr>
+          <tr><td><span class="ph">[pH_KUNKAY]</span></td><td>pH exacto al que está formulado</td></tr>
+          <tr><td><span class="ph">[TIPO_PIEL]</span></td><td>Perro / gato / específico por SKU</td></tr>
+          <tr><td><span class="ph">[PROBLEMA_TARGET]</span></td><td>Picor / caspa / dermatitis / olor (varía por SKU)</td></tr>
+          <tr><td><span class="ph">[AÑOS_MARIA_EN_SECTOR]</span></td><td>Antigüedad de María en mascotas</td></tr>
+          <tr><td><span class="ph">[TIEMPO_DESARROLLO]</span></td><td>Tiempo que tardaron en sacar la línea</td></tr>
+          <tr><td><span class="ph">[N_FORMULACIONES]</span></td><td>Cuántas formulaciones probaron antes de la final</td></tr>
+          <tr><td><span class="ph">[TIPO_CHAMPU_GENERICO]</span></td><td>Categoría/tipo del champú genérico (no marca)</td></tr>
+          <tr><td><span class="ph">[RAZA_PERRO]</span></td><td>Raza concreta del testimonial UGC</td></tr>
+          <tr><td><span class="ph">[VETERINARIA_O_GROOMER]</span></td><td>Profesional del C4.4</td></tr>
+          <tr><td><span class="ph">[OFERTA_LANZAMIENTO]</span></td><td>Descuento / regalo / garantía del lanzamiento</td></tr>
+          <tr><td><span class="ph">[SISTEMA_AROMÁTICO_KUNKAY]</span></td><td>Cómo huele Kunkay, de dónde viene el aroma</td></tr>
+          <tr><td><span class="ph">[CPA_TARGET]</span></td><td>CPA objetivo (define la lectura de winner)</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="callout">
+      <strong>Próximo paso:</strong> volcar los placeholders + decidir oferta de lanzamiento + cerrar shotlist para los 20 rodajes.
+    </div>
+  </section>
+
+  <footer>
+    <p class="wordmark"><b>Josep</b> Cid · Estrategia preparada para Kunkay</p>
+    <p style="margin-top:8px;font-size:0.8rem;">Mayo 2026 · Documento de trabajo interno</p>
+  </footer>
+
+</div>
+</body>
+</html>
